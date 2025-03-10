@@ -1,9 +1,25 @@
 #include <iostream>
 #include <string>
+#include <#include <iostream>
+#include <string>
 #include <limits>
 #include <iomanip>
+#include <windows.h> // Incluir para usar gotoxy y system("cls")
 
 using namespace std;
+
+// Función para posicionar el cursor en la consola
+void gotoxy(int x, int y) {
+	COORD coord;
+	coord.X = x;
+	coord.Y = y;
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
+}
+
+// Función para limpiar la pantalla
+void clearScreen() {
+	system("cls");
+}
 
 class cuentabancaria {
 private:
@@ -105,45 +121,68 @@ public:
 		double monto;
 
 		do {
-			cout << "\n---Menu de opciones para la cuenta: " << getnumeroCuenta() << "---" << endl;
+			clearScreen(); // Limpiar la pantalla antes de mostrar el menú
+			gotoxy(35, 10); // Posicionar el menú en el centro de la pantalla
+			cout << "---Menu de opciones para la cuenta: " << getnumeroCuenta() << "---" << endl;
+			gotoxy(35, 11);
 			cout << "1. Ver saldo." << endl;
+			gotoxy(35, 12);
 			cout << "2. Depositar." << endl;
+			gotoxy(35, 13);
 			cout << "3. Retirar" << endl;
+			gotoxy(35, 14);
 			cout << "4. Desactivar cuenta" << endl;
+			gotoxy(35, 15);
 			cout << "5. Activar cuenta" << endl;
+			gotoxy(35, 16);
 			cout << "6. Desbloquear cuenta" << endl;
+			gotoxy(35, 17);
 			cout << "7. Salir" << endl;
-			cout << "Seleccione una opción" << endl;
+			gotoxy(35, 18);
+			cout << "Seleccione una opción: ";
 			cin >> opcion;
 
 			switch (opcion) {
 			case 1:
+				gotoxy(35, 20);
 				cout << "Saldo actual: Q" << getsaldo() << endl;
+				system("pause");
 				break;
 			case 2:
+				gotoxy(35, 20);
 				cout << "Ingrese el monto a depositar: ";
 				cin >> monto;
 				depositar(monto);
+				system("pause");
 				break;
 			case 3:
+				gotoxy(35, 20);
 				cout << "Ingrese el monto a retirar: ";
 				cin >> monto;
 				retirar(monto);
+				system("pause");
 				break;
 			case 4:
 				desactivarcuenta();
+				system("pause");
 				break;
 			case 5:
 				activarcuenta();
+				system("pause");
 				break;
 			case 6:
 				desbloquearcuenta();
+				system("pause");
 				break;
 			case 7:
+				gotoxy(35, 20);
 				cout << "Saliendo del programa, por favor espere..." << endl;
+				system("pause");
 				break;
 			default:
+				gotoxy(35, 20);
 				cout << "Opción no válida, ingrese opciones que aparecen en el menú." << endl;
+				system("pause");
 			}
 		} while (opcion != 7);
 	}
@@ -189,14 +228,20 @@ int main() {
 	int numerocuenta;
 
 	do {
+		clearScreen(); // Limpiar la pantalla antes de mostrar el menú principal
+		gotoxy(35, 10);
 		cout << "<-----Menú Principal----->" << endl;
-		cout << "\n1. Seleccionar una cuenta." << endl;
-		cout << "\n0. Salir" << endl;
-		cout << "\nSeleccione una opción." << endl;
+		gotoxy(35, 12);
+		cout << "1. Seleccionar una cuenta." << endl;
+		gotoxy(35, 13);
+		cout << "0. Salir" << endl;
+		gotoxy(35, 14);
+		cout << "Seleccione una opción: ";
 		cin >> opcionprincipal;
 
 		if (opcionprincipal == 1) {
-			cout << "Ingrese el número de cuenta: " << endl;
+			gotoxy(35, 16);
+			cout << "Ingrese el número de cuenta: ";
 			cin >> numerocuenta;
 
 			switch (numerocuenta) {
@@ -282,7 +327,7 @@ int main() {
 				cuenta27.mostrarmenu();
 				break;
 			case 28:
-				cuenta28.mostrarmenu();
+				cuenta28.mostrarmenu();1
 				break;
 			case 29:
 				cuenta29.mostrarmenu();
@@ -291,14 +336,20 @@ int main() {
 				cuenta30.mostrarmenu();
 				break;
 			default:
+				gotoxy(35, 18);
 				cout << "Número de cuenta no válido." << endl;
+				system("pause");
 			}
 		}
 		else if (opcionprincipal == 0) {
+			gotoxy(35, 16);
 			cout << "Saliendo del programa, por favor espere." << endl;
+			system("pause");
 		}
 		else {
-			cout << "Opción no válida, intente otro núnero." << endl;
+			gotoxy(35, 16);
+			cout << "Opción no válida, intente otro número." << endl;
+			system("pause");
 		}
 	} while (opcionprincipal != 0);
 
