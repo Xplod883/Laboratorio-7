@@ -2,11 +2,11 @@
 #include <string>
 #include <limits>
 #include <iomanip>
-#include <windows.h> // Incluir para usar gotoxy y system("cls")
+#include <windows.h> //Librería para usar gotoxy
 
 using namespace std;
 
-// Función para posicionar el cursor en la consola
+//Función para declarar las funciones del gotoxy
 void gotoxy(int x, int y) {
     COORD coord;
     coord.X = x;
@@ -14,7 +14,7 @@ void gotoxy(int x, int y) {
     SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
 }
 
-// Función para limpiar la pantalla
+// Función para limpiar el buffer de pantalla
 void clearScreen() {
     system("cls");
 }
@@ -119,7 +119,7 @@ public:
         double monto;
 
         do {
-            clearScreen();
+            clearScreen(); //Limpia el buffer de pantalla luego de terminar una opción
             gotoxy(68, 20);
             cout << "---Menu de opciones para la cuenta: " << getnumeroCuenta() << "---" << endl;
             gotoxy(68, 21);
@@ -187,7 +187,7 @@ public:
 };
 
 int main() {
-    setlocale(LC_ALL, "es_ES.UTF-8");
+    setlocale(LC_ALL, "es_ES.UTF-8"); 
     double monto = 1234.89;
     std::cout << std::fixed << std::setprecision(2) << monto << std::endl;
 
